@@ -1,0 +1,62 @@
+---
+title: "Amazon Products"
+author: "Tomiris Medetbekova"
+date: "4/10/2022"
+output: html_document
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+
+##The dataset that I’ve picked is an Amazon dataset, it would likely live in Amazon’s database as well in Data warehouse. It contains the data about product, manufacturer, price, number of products available, number of reviews/star rating and etc. The volume of my data would contain 10,000 amazon products. The type of research I'm going to do is evaluation of the products that are in demand, visualizations of the products manufacturers that are producing the most of Amazon products and creatensome visualizations that can be useful in my research. In terms of format, my data is in Excel format but I'll use readxl package in order to transform it into R Studio. I beleive that my data is in fixed width format because it's in Excel format. My data is not binary. 
+
+## I've used readxl function to read my data
+library(readxl)
+
+## Set working directory 
+setwd("~/Desktop/amazon project") 
+
+## Cleaning the data, filtering
+# library (dplyr)
+library(tidyverse)
+
+Amazon_Products <- as_tibble(Amazon_Products)
+select(Amazon_Products, -product_name, -price)
+
+filter(Amazon_Products, average_review_rating > 4.5)
+
+select(Amazon_Products,number_of_reviews,price,product_name)
+
+##Because I am working with a large amount of data, I am creating a paged table so we can clearly see all the information withing tables and columns.
+
+```{r, layout="l-body-outset"}
+library(rmarkdown)
+paged_table(Amazon_Products)
+```
+
+##Subset my dataset
+library(dplyr)
+
+
+select(Amazon_Products, product_name, average_review_rating, number_of_reviews)
+
+##Produce a summary of the subset
+```{r, include = TRUE}
+Summarytable<-summary(Amazon_Products) #creates the summary
+Summarytable #prints the summary in your output
+#or you can do this to print:
+print(Summarytable)
+```
+
+product_name, average_review_rating, number_of_reviews
+
+
+
